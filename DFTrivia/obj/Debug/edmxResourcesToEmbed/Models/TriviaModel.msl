@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TriviaDBModelStoreContainer" CdmEntityContainer="TriviaDBEntities">
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="TriviaDBModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="MediaSrc" ColumnName="MediaSrc" />
+          <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Question1" ColumnName="Question" />
+          <ScalarProperty Name="AnswerA" ColumnName="AnswerA" />
+          <ScalarProperty Name="AnswerB" ColumnName="AnswerB" />
+          <ScalarProperty Name="AnswerC" ColumnName="AnswerC" />
+          <ScalarProperty Name="AnswerD" ColumnName="AnswerD" />
+          <ScalarProperty Name="Hint1" ColumnName="Hint1" />
+          <ScalarProperty Name="Hint2" ColumnName="Hint2" />
+          <ScalarProperty Name="Hint3" ColumnName="Hint3" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rounds">
+      <EntityTypeMapping TypeName="TriviaDBModel.Round">
+        <MappingFragment StoreEntitySet="Rounds">
+          <ScalarProperty Name="RoundID" ColumnName="RoundID" />
+          <ScalarProperty Name="Rounds" ColumnName="Rounds" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="GameType" ColumnName="GameType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TriviaDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserScore" ColumnName="UserScore" />
+          <ScalarProperty Name="ImgSource" ColumnName="ImgSource" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

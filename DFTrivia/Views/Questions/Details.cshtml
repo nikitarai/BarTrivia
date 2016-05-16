@@ -1,0 +1,114 @@
+﻿@model DFTrivia.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Questions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Questions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hint1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hint1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hint2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hint2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hint3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hint3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaSrc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaSrc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TriviaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerD" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CorrectAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hint1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hint2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hint3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Points" Type="int" Nullable="false" />
+    <Property Name="MediaSrc" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Rounds">
+    <Key>
+      <PropertyRef Name="RoundID" />
+    </Key>
+    <Property Name="RoundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rounds" Type="int" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="GameType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserScore" Type="int" />
+    <Property Name="ImgSource" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Rounds_Questions">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="Rounds" Type="Self.Rounds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Rounds">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rounds_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Rounds" Type="Self.Rounds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Rounds">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TriviaDBModelStoreContainer">
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rounds" EntityType="Self.Rounds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Rounds_Questions" Association="Self.FK_Rounds_Questions">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Rounds" EntitySet="Rounds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rounds_Users" Association="Self.FK_Rounds_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rounds" EntitySet="Rounds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

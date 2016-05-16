@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>BarTrivia</h1>
+    <p class="lead">Find out who's smarter at your local bar. Quiz your knowledge and Have some Fun.</p>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Gamers", "Index", "Users")</h2>
+        <p>
+            Come to the dark side.
+        </p>
+        
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Questions", "Index", "Questions")</h2>
+        <p>You're welcome to add trivia questions.</p>
+       
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Rounds","Index", "Rounds")</h2>
+        <p>A regular game is three rounds of 10 questions.</p>
+       
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TriviaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnswerA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnswerB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnswerC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnswerD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Hint1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Hint2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Hint3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Points" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rounds" Relationship="TriviaDBModel.FK_Rounds_Questions" FromRole="Question" ToRole="Round" />
+    <Property Name="CorrectAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MediaSrc" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+  </EntityType>
+  <EntityType Name="Round">
+    <Key>
+      <PropertyRef Name="RoundID" />
+    </Key>
+    <Property Name="RoundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rounds" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="GameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="TriviaDBModel.FK_Rounds_Questions" FromRole="Round" ToRole="Question" />
+    <NavigationProperty Name="User" Relationship="TriviaDBModel.FK_Rounds_Users" FromRole="Round" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserScore" Type="Int32" />
+    <Property Name="ImgSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rounds" Relationship="TriviaDBModel.FK_Rounds_Users" FromRole="User" ToRole="Round" />
+  </EntityType>
+  <EntityContainer Name="TriviaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Rounds" EntityType="Self.Round" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Rounds_Questions" Association="TriviaDBModel.FK_Rounds_Questions">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Round" EntitySet="Rounds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rounds_Users" Association="TriviaDBModel.FK_Rounds_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Round" EntitySet="Rounds" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Rounds_Questions">
+    <End Type="TriviaDBModel.Question" Role="Question" Multiplicity="1" />
+    <End Type="TriviaDBModel.Round" Role="Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Round">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rounds_Users">
+    <End Type="TriviaDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="TriviaDBModel.Round" Role="Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Round">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
